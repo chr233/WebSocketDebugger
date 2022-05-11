@@ -212,6 +212,7 @@ namespace WebSocketDebugger
                 }
                 catch
                 {
+                    // 错误处理由Ws完成
                 }
             }
             else
