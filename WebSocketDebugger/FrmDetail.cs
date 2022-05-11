@@ -30,7 +30,11 @@ namespace WebSocketDebugger
                 string message = txtMessage.Text;
 
                 object obj = JsonSerializer.Deserialize<object>(message) ?? throw new Exception();
-                string result = JsonSerializer.Serialize(obj, new JsonSerializerOptions() { WriteIndented = true });
+                JsonSerializerOptions option = new()
+                {
+                    WriteIndented = true
+                };
+                string result = JsonSerializer.Serialize(obj, option);
 
                 txtMessage.Text = result;
             }
