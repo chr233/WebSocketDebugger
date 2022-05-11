@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSocketDebugger", "WebSocketDebugger\WebSocketDebugger.csproj", "{7D89A1A5-D98A-4F7C-B7A6-6DE58E353F7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{9AB4E08F-3A3E-4EEA-96B4-9848C47FAF54}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D89A1A5-D98A-4F7C-B7A6-6DE58E353F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D89A1A5-D98A-4F7C-B7A6-6DE58E353F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D89A1A5-D98A-4F7C-B7A6-6DE58E353F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D89A1A5-D98A-4F7C-B7A6-6DE58E353F7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D3364BAF-80E0-4E1E-9B9F-777F29ABA79B}
+	EndGlobalSection
+EndGlobal
