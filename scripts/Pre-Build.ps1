@@ -10,7 +10,7 @@ $assemblyInfoFile = "$projectDir\AssemblyInfo.cs";
 
 $pattern = 'Version\("(\d+\.\d+\.\d+\.)(\d+)"\)';
 
-$fileContent = Get-Content -Path "$assemblyInfoFile";
+$fileContent = Get-Content -Path "$assemblyInfoFile" -Encoding utf8;
 
 $newFile = @();
 

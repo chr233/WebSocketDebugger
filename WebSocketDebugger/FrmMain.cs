@@ -14,7 +14,7 @@ namespace WebSocketDebugger
 
         private const string SEND = "-->";
         private const string RECV = "<--";
-        private const string CONN = "-�?-";
+        private const string CONN = "-○-";
         private const string DISC = "-×-";
 
 
@@ -107,7 +107,7 @@ namespace WebSocketDebugger
                         Invoke(() =>
                         {
                             lblStatus.Text = "已断开";
-                            AddLog("�?开连接", false);
+                            AddLog("断开连接", false);
                             CloseWs();
                         });
                     };
@@ -117,7 +117,7 @@ namespace WebSocketDebugger
                         Invoke(() =>
                         {
                             lblStatus.Text = "连接出错";
-                            AddLog("连接出错, �?开连接", false);
+                            AddLog("连接出错, 断开连接", false);
                             CloseWs();
                         });
                     };
@@ -127,7 +127,7 @@ namespace WebSocketDebugger
                         Invoke(() =>
                         {
                             lblStatus.Text = "连接成功";
-                            btnWsControl.Text = "&C. �?开连接";
+                            btnWsControl.Text = "&C. 断开连接";
                             txtWebSocketUri.ReadOnly = true;
                             AddLog("连接成功", true);
                         });
