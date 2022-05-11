@@ -10,6 +10,7 @@
     <PackageProjectUrl>https://github.com/chr233/Xiaoheihe_CShape</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>AGPLv3</PackageLicenseExpression>
+    <ApplicationIcon>Properties\icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,8 +36,8 @@
     </None>
   </ItemGroup>
 
-  <!-- <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="powershell -Command &quot;&amp;'$(SolutionDir)scripts\Pre-Build.ps1' '$(ProjectDir)'&quot;" />
-  </Target> -->
+  </Target>
 
 </Project>

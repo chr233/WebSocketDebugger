@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Media;
-using System.Text;
+﻿using System.Media;
 using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace WebSocketDebugger
 {
@@ -16,12 +7,10 @@ namespace WebSocketDebugger
     {
         private static SystemSound Beep => SystemSounds.Beep;
 
-        public FrmDetail(string message, bool send)
+        public FrmDetail(string message)
         {
             InitializeComponent();
             txtMessage.Text = message;
-            Text = "消息详情 ";
-            Text += send ? "-> 发送" : "<- 接收";
         }
 
         private void BtnClose_Click(object sender, EventArgs e)

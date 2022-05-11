@@ -3,10 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="FormSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
-    <Setting Name="FormMinimised" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">660, 550</Value>
     </Setting>
     <Setting Name="FormMaximised" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -15,7 +12,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="FormKeepMessage" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="TemplatesJson" Type="System.String" Scope="User">
       <Value Profile="(Default)">{}</Value>

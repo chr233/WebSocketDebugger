@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.txtWebSocketUri = new System.Windows.Forms.TextBox();
             this.btnWsControl = new System.Windows.Forms.Button();
             this.lvHistory = new System.Windows.Forms.ListView();
@@ -113,7 +114,7 @@
             this.lvHistory.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvHistory.Location = new System.Drawing.Point(3, 19);
             this.lvHistory.Name = "lvHistory";
-            this.lvHistory.Size = new System.Drawing.Size(613, 252);
+            this.lvHistory.Size = new System.Drawing.Size(613, 218);
             this.lvHistory.TabIndex = 4;
             this.lvHistory.UseCompatibleStateImageBehavior = false;
             this.lvHistory.View = System.Windows.Forms.View.Details;
@@ -254,7 +255,7 @@
             this.groupBox1.Controls.Add(this.splitContainer1);
             this.groupBox1.Location = new System.Drawing.Point(12, 41);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(619, 258);
+            this.groupBox1.Size = new System.Drawing.Size(619, 208);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "发送消息";
@@ -280,7 +281,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.txtName);
             this.splitContainer1.Panel2.Controls.Add(this.txtMessage);
             this.splitContainer1.Panel2MinSize = 300;
-            this.splitContainer1.Size = new System.Drawing.Size(613, 236);
+            this.splitContainer1.Size = new System.Drawing.Size(613, 186);
             this.splitContainer1.SplitterDistance = 276;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -295,7 +296,7 @@
             this.lvTemplates.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvTemplates.Location = new System.Drawing.Point(0, 0);
             this.lvTemplates.Name = "lvTemplates";
-            this.lvTemplates.Size = new System.Drawing.Size(276, 236);
+            this.lvTemplates.Size = new System.Drawing.Size(276, 186);
             this.lvTemplates.TabIndex = 3;
             this.lvTemplates.UseCompatibleStateImageBehavior = false;
             this.lvTemplates.View = System.Windows.Forms.View.Details;
@@ -315,7 +316,7 @@
             // 
             this.chkKeepMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chkKeepMessage.AutoSize = true;
-            this.chkKeepMessage.Location = new System.Drawing.Point(238, 141);
+            this.chkKeepMessage.Location = new System.Drawing.Point(238, 110);
             this.chkKeepMessage.Name = "chkKeepMessage";
             this.chkKeepMessage.Size = new System.Drawing.Size(90, 21);
             this.chkKeepMessage.TabIndex = 10;
@@ -361,9 +362,9 @@
             // btnSend
             // 
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSend.Location = new System.Drawing.Point(234, 168);
+            this.btnSend.Location = new System.Drawing.Point(234, 137);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(99, 68);
+            this.btnSend.Size = new System.Drawing.Size(99, 49);
             this.btnSend.TabIndex = 9;
             this.btnSend.TabStop = false;
             this.btnSend.Text = "&S. 发送";
@@ -389,7 +390,7 @@
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.PlaceholderText = "消息正文";
-            this.txtMessage.Size = new System.Drawing.Size(227, 208);
+            this.txtMessage.Size = new System.Drawing.Size(227, 158);
             this.txtMessage.TabIndex = 2;
             // 
             // splitContainer2
@@ -405,14 +406,14 @@
             this.splitContainer2.Panel1.Controls.Add(this.btnWsControl);
             this.splitContainer2.Panel1.Controls.Add(this.groupBox1);
             this.splitContainer2.Panel1.Controls.Add(this.txtWebSocketUri);
-            this.splitContainer2.Panel1MinSize = 300;
+            this.splitContainer2.Panel1MinSize = 250;
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.groupBoxHistory);
-            this.splitContainer2.Panel2MinSize = 200;
-            this.splitContainer2.Size = new System.Drawing.Size(643, 584);
-            this.splitContainer2.SplitterDistance = 300;
+            this.splitContainer2.Panel2MinSize = 150;
+            this.splitContainer2.Size = new System.Drawing.Size(643, 500);
+            this.splitContainer2.SplitterDistance = 250;
             this.splitContainer2.TabIndex = 4;
             // 
             // lblStatus
@@ -433,7 +434,7 @@
             this.groupBoxHistory.Controls.Add(this.lvHistory);
             this.groupBoxHistory.Location = new System.Drawing.Point(12, 3);
             this.groupBoxHistory.Name = "groupBoxHistory";
-            this.groupBoxHistory.Size = new System.Drawing.Size(619, 274);
+            this.groupBoxHistory.Size = new System.Drawing.Size(619, 240);
             this.groupBoxHistory.TabIndex = 0;
             this.groupBoxHistory.TabStop = false;
             this.groupBoxHistory.Text = "历史记录";
@@ -443,9 +444,10 @@
             this.AcceptButton = this.btnSend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(643, 584);
+            this.ClientSize = new System.Drawing.Size(643, 500);
             this.Controls.Add(this.splitContainer2);
-            this.MinimumSize = new System.Drawing.Size(600, 550);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(600, 450);
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WebSocket 调试工具";

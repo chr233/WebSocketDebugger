@@ -1,10 +1,7 @@
-using System.Runtime.InteropServices;
-using WebSocketSharp;
-using System.Text.Json.Serialization;
-
-using WebSocketDebugger.Data;
+ï»¿using System.Media;
 using System.Text.Json;
-using System.Media;
+using WebSocketDebugger.Data;
+using WebSocketSharp;
 
 namespace WebSocketDebugger
 {
@@ -17,8 +14,8 @@ namespace WebSocketDebugger
 
         private const string SEND = "-->";
         private const string RECV = "<--";
-        private const string CONN = "-¡ð-";
-        private const string DISC = "-¡Á-";
+        private const string CONN = "-â—‹-";
+        private const string DISC = "-Ã—-";
 
 
         public FrmMain()
@@ -47,7 +44,7 @@ namespace WebSocketDebugger
 
             Version version = typeof(Program).Assembly.GetName().Version ?? throw new ArgumentNullException(nameof(Version));
 
-            Text = $"WebSocket µ÷ÊÔ¹¤¾ß {version.Major}.{version.Minor}.{version.Build}.{version.Revision} - By Chr_ - 2022";
+            Text = $"WebSocket è°ƒè¯•å·¥å…· {version.Major}.{version.Minor}.{version.Build}.{version.Revision} - By Chr_ - 2022";
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -55,10 +52,6 @@ namespace WebSocketDebugger
             if (Config.FormMaximised)
             {
                 WindowState = FormWindowState.Maximized;
-            }
-            else if (Config.FormMinimised)
-            {
-                WindowState = FormWindowState.Minimized;
             }
             Size = Config.FormSize;
 
@@ -80,17 +73,11 @@ namespace WebSocketDebugger
         private void Frm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Config.FormMaximised = false;
-            Config.FormMinimised = false;
 
-            if (WindowState == FormWindowState.Maximized)
+            if (WindowState != FormWindowState.Normal)
             {
                 Config.FormSize = RestoreBounds.Size;
-                Config.FormMaximised = true;
-            }
-            else if (WindowState == FormWindowState.Minimized)
-            {
-                Config.FormSize = RestoreBounds.Size;
-                Config.FormMinimised = true;
+                Config.FormMaximised = WindowState == FormWindowState.Maximized;
             }
             else
             {
@@ -119,8 +106,8 @@ namespace WebSocketDebugger
                         Beep.Play();
                         Invoke(() =>
                         {
-                            lblStatus.Text = "ÒÑ¶Ï¿ª";
-                            AddLog("¶Ï¿ªÁ¬½Ó", false);
+                            lblStatus.Text = "å·²æ–­å¼€";
+                            AddLog("æ–­å¼€è¿žæŽ¥", false);
                             CloseWs();
                         });
                     };
@@ -129,19 +116,20 @@ namespace WebSocketDebugger
                         Beep.Play();
                         Invoke(() =>
                         {
-                            lblStatus.Text = "Á¬½Ó³ö´í";
-                            AddLog("Á¬½Ó³ö´í, ¶Ï¿ªÁ¬½Ó", false);
+                            lblStatus.Text = "è¿žæŽ¥å‡ºé”™";
+                            AddLog("è¿žæŽ¥å‡ºé”™, æ–­å¼€è¿žæŽ¥", false);
                             CloseWs();
                         });
                     };
                     Ws.OnOpen += (sender, e) =>
                     {
+                        Ws.WaitTime = TimeSpan.FromMinutes(5);
                         Invoke(() =>
                         {
-                            lblStatus.Text = "Á¬½Ó³É¹¦";
-                            btnWsControl.Text = "&C. ¶Ï¿ªÁ¬½Ó";
+                            lblStatus.Text = "è¿žæŽ¥æˆåŠŸ";
+                            btnWsControl.Text = "&C. æ–­å¼€è¿žæŽ¥";
                             txtWebSocketUri.ReadOnly = true;
-                            AddLog("Á¬½Ó³É¹¦", true);
+                            AddLog("è¿žæŽ¥æˆåŠŸ", true);
                         });
                     };
                     Ws.OnMessage += (sender, e) =>
@@ -152,13 +140,10 @@ namespace WebSocketDebugger
                     Ws.WaitTime = TimeSpan.FromSeconds(5);
 
                     Ws.Connect();
-
-                    Ws.WaitTime = TimeSpan.FromSeconds(5000);
-
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"WebScoketÁ¬½ÓÊ§°Ü\n{ex.Message}", "´íÎó", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"WebScoketè¿žæŽ¥å¤±è´¥\n{ex.Message}", "é”™è¯¯", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -171,7 +156,7 @@ namespace WebSocketDebugger
             }
 
             Ws = null;
-            btnWsControl.Text = "&C. ´ò¿ªÁ¬½Ó";
+            btnWsControl.Text = "&C. æ‰“å¼€è¿žæŽ¥";
             txtWebSocketUri.ReadOnly = false;
         }
 
@@ -375,7 +360,7 @@ namespace WebSocketDebugger
 
                     bool send = item.SubItems[2].Text == SEND;
 
-                    FrmDetail frmDetail = new(content, send);
+                    FrmDetail frmDetail = new(content);
 
                     frmDetail.Show();
                 }
