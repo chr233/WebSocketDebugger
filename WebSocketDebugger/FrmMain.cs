@@ -2,12 +2,13 @@
 using System.Text.Json;
 using WebSocketDebugger.Data;
 using WebSocketSharp;
+using WebSocketDebugger.Storage;
 
 namespace WebSocketDebugger
 {
     public partial class FrmMain : Form
     {
-        private static Properties.Config Config => Properties.Config.Default;
+        private static Config MyConfig => Utils.GlobalConfig;
         private static SystemSound Beep => SystemSounds.Beep;
         private Dictionary<string, TemplateData> Templates { get; }
         private WebSocket? Ws { get; set; } = null;
@@ -22,24 +23,11 @@ namespace WebSocketDebugger
         {
             InitializeComponent();
 
-            try
+            Templates = new();
+
+            foreach (TemplateData temp in MyConfig.Templates)
             {
-                string templates = Config.TemplatesJson;
-
-                List<TemplateData> temps = JsonSerializer.Deserialize<List<TemplateData>>(templates) ?? new();
-
-                Templates = new();
-
-                foreach (TemplateData temp in temps)
-                {
-                    Templates.Add(temp.Name, temp);
-                }
-            }
-            catch
-            {
-                Templates = new();
-                Config.TemplatesJson = "{}";
-                Config.Save();
+                Templates.Add(temp.Name, temp);
             }
 
             Version version = typeof(Program).Assembly.GetName().Version ?? throw new ArgumentNullException(nameof(Version));
@@ -49,14 +37,16 @@ namespace WebSocketDebugger
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            if (Config.FormMaximised)
+            Utils.LoadConfig();
+
+            if (MyConfig.FormMaximised)
             {
                 WindowState = FormWindowState.Maximized;
             }
-            Size = Config.FormSize;
+            Size = new Size(MyConfig.FormWidth, MyConfig.FormHeight);
 
-            txtWebSocketUri.Text = Config.WebSocketUri;
-            chkKeepMessage.Checked = Config.FormKeepMessage;
+            txtWebSocketUri.Text = MyConfig.WebSocketUri;
+            chkKeepMessage.Checked = MyConfig.KeepMessage;
 
             lvTemplates.BeginUpdate();
 
@@ -72,25 +62,29 @@ namespace WebSocketDebugger
 
         private void Frm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Config.FormMaximised = false;
+            MyConfig.FormMaximised = false;
+
+            Size size;
 
             if (WindowState != FormWindowState.Normal)
             {
-                Config.FormSize = RestoreBounds.Size;
-                Config.FormMaximised = WindowState == FormWindowState.Maximized;
+                size = RestoreBounds.Size;
+                MyConfig.FormMaximised = WindowState == FormWindowState.Maximized;
             }
             else
             {
-                Config.FormSize = Size;
+                size = Size;
             }
 
-            Config.WebSocketUri = txtWebSocketUri.Text;
-            Config.FormKeepMessage = chkKeepMessage.Checked;
+            MyConfig.FormHeight = size.Height;
+            MyConfig.FormWidth = size.Width;
 
-            string tempJson = JsonSerializer.Serialize(Templates.Values.ToList());
-            Config.TemplatesJson = tempJson;
+            MyConfig.WebSocketUri = txtWebSocketUri.Text;
+            MyConfig.KeepMessage = chkKeepMessage.Checked;
 
-            Config.Save();
+            MyConfig.Templates = Templates.Values.ToHashSet();
+
+            Utils.SaveConfig();
         }
 
         private void StartWs()

@@ -1,4 +1,4 @@
-namespace WebSocketDebugger
+﻿namespace WebSocketDebugger
 {
     internal static class Program
     {
@@ -6,7 +6,7 @@ namespace WebSocketDebugger
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             ApplicationConfiguration.Initialize();
             Application.Run(new FrmMain());
