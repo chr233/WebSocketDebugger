@@ -10,7 +10,7 @@ namespace WebSocketDebugger
     {
         private static Config MyConfig => Utils.GlobalConfig;
         private static SystemSound Beep => SystemSounds.Beep;
-        private Dictionary<string, TemplateData> Templates { get; }
+        private Dictionary<string, TemplateData> Templates { get; } = new();
         private WebSocket? Ws { get; set; } = null;
 
         private const string SEND = "-->";
@@ -22,13 +22,6 @@ namespace WebSocketDebugger
         public FrmMain()
         {
             InitializeComponent();
-
-            Templates = new();
-
-            foreach (TemplateData temp in MyConfig.Templates)
-            {
-                Templates.Add(temp.Name, temp);
-            }
 
             Version version = typeof(Program).Assembly.GetName().Version ?? throw new ArgumentNullException(nameof(Version));
 
@@ -47,6 +40,11 @@ namespace WebSocketDebugger
 
             txtWebSocketUri.Text = MyConfig.WebSocketUri;
             chkKeepMessage.Checked = MyConfig.KeepMessage;
+
+            foreach (TemplateData temp in MyConfig.Templates)
+            {
+                Templates.Add(temp.Name, temp);
+            }
 
             lvTemplates.BeginUpdate();
 
