@@ -93,6 +93,7 @@ namespace WebSocketDebugger
                 try
                 {
                     Ws = new WebSocket(url);
+                    Ws.CustomHeaders = MyConfig.Headers;
                     Ws.OnClose += (sender, e) =>
                     {
                         Beep.Play();
@@ -120,6 +121,7 @@ namespace WebSocketDebugger
                         {
                             lblStatus.Text = "连接成功";
                             btnWsControl.Text = "&C. 断开连接";
+                            btnHeaders.Enabled = false;
                             txtWebSocketUri.ReadOnly = true;
                             AddLog("连接成功", true);
                         });
@@ -150,6 +152,7 @@ namespace WebSocketDebugger
             Ws = null;
             btnWsControl.Text = "&C. 打开连接";
             txtWebSocketUri.ReadOnly = false;
+            btnHeaders.Enabled = true;
         }
 
         private void AddLog(string message, bool conn)
@@ -176,6 +179,13 @@ namespace WebSocketDebugger
         {
             Action action = Ws == null ? StartWs : CloseWs;
             Invoke(action);
+        }
+
+        private void btnHeaders_Click(object sender, EventArgs e)
+        {
+            FrmHeaders frmHeaders = new();
+            frmHeaders.ShowDialog();
+            frmHeaders.Dispose();
         }
 
         private void BtnSend_Click(object sender, EventArgs e)
@@ -355,8 +365,6 @@ namespace WebSocketDebugger
                 {
                     string content = item.SubItems[3].Text;
 
-                    bool send = item.SubItems[2].Text == SEND;
-
                     FrmDetail frmDetail = new(content);
 
                     frmDetail.Show();
@@ -366,58 +374,37 @@ namespace WebSocketDebugger
 
         private void MenuClear_Click(object sender, EventArgs e)
         {
-            lvHistory.Clear();
-        }
-
-        private static void ListViewMuliSelect(ListView lv, SelectMode mode)
-        {
-            lv.BeginUpdate();
-
-            bool flag = mode == SelectMode.All;
-
-            foreach (ListViewItem item in lv.Items)
-            {
-                if (mode == SelectMode.Not)
-                {
-                    item.Selected = !item.Selected;
-                }
-                else
-                {
-                    item.Selected = flag;
-                }
-            }
-
-            lv.EndUpdate();
+            lvHistory.Items.Clear();
         }
 
         private void MenuAll_Click(object sender, EventArgs e)
         {
-            ListViewMuliSelect(lvTemplates, SelectMode.All);
+            Utils.ListViewMuliSelect(lvTemplates, SelectMode.All);
         }
 
         private void MenuNot_Click(object sender, EventArgs e)
         {
-            ListViewMuliSelect(lvTemplates, SelectMode.Not);
+            Utils.ListViewMuliSelect(lvTemplates, SelectMode.Not);
         }
 
         private void MenuNone_Click(object sender, EventArgs e)
         {
-            ListViewMuliSelect(lvTemplates, SelectMode.None);
+            Utils.ListViewMuliSelect(lvTemplates, SelectMode.None);
         }
 
         private void MenuAll2_Click(object sender, EventArgs e)
         {
-            ListViewMuliSelect(lvHistory, SelectMode.All);
+            Utils.ListViewMuliSelect(lvHistory, SelectMode.All);
         }
 
         private void MenuNot2_Click(object sender, EventArgs e)
         {
-            ListViewMuliSelect(lvHistory, SelectMode.Not);
+            Utils.ListViewMuliSelect(lvHistory, SelectMode.Not);
         }
 
         private void MenuNone2_Click(object sender, EventArgs e)
         {
-            ListViewMuliSelect(lvHistory, SelectMode.None);
+            Utils.ListViewMuliSelect(lvHistory, SelectMode.None);
         }
 
         private void MenuTemp_Opening(object sender, System.ComponentModel.CancelEventArgs e)
@@ -454,5 +441,6 @@ namespace WebSocketDebugger
                 menuDetail.Enabled = true;
             }
         }
+
     }
 }

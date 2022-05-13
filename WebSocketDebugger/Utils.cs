@@ -1,11 +1,11 @@
 ﻿using System.Text;
 using System.Text.Json;
-
+using WebSocketDebugger.Data;
 using WebSocketDebugger.Storage;
 
 namespace WebSocketDebugger
 {
-    public static class Utils
+    internal static class Utils
     {
         internal static Config GlobalConfig { get; private set; } = new();
 
@@ -13,7 +13,7 @@ namespace WebSocketDebugger
         /// 读取配置路径
         /// </summary>
         /// <returns></returns>
-        public static string GetConfigFilePath()
+        internal static string GetConfigFilePath()
         {
             string appFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string configFolder = Path.Combine(appFolder, nameof(WebSocketDebugger));
@@ -30,7 +30,7 @@ namespace WebSocketDebugger
         /// <summary>
         /// 读取配置
         /// </summary>
-        public static void SaveConfig()
+        internal static void SaveConfig()
         {
             string filePath = GetConfigFilePath();
             SaveConfig(filePath);
@@ -40,7 +40,7 @@ namespace WebSocketDebugger
         /// 读取配置
         /// </summary>
         /// <param name="filePath"></param>
-        public static void SaveConfig(string filePath)
+        internal static void SaveConfig(string filePath)
         {
 #if DEBUG
             JsonSerializerOptions options = new()
@@ -59,7 +59,7 @@ namespace WebSocketDebugger
         /// <summary>
         /// 加载配置
         /// </summary>
-        public static void LoadConfig()
+        internal static void LoadConfig()
         {
             string filePath = GetConfigFilePath();
 
@@ -70,7 +70,7 @@ namespace WebSocketDebugger
         /// 加载配置
         /// </summary>
         /// <param name="filePath"></param>
-        public static void LoadConfig(string filePath)
+        internal static void LoadConfig(string filePath)
         {
             if (File.Exists(filePath))
             {
@@ -82,6 +82,26 @@ namespace WebSocketDebugger
                 GlobalConfig = new();
                 SaveConfig(filePath);
             }
+        }
+        internal static void ListViewMuliSelect(ListView lv, SelectMode mode)
+        {
+            lv.BeginUpdate();
+
+            bool flag = mode == SelectMode.All;
+
+            foreach (ListViewItem item in lv.Items)
+            {
+                if (mode == SelectMode.Not)
+                {
+                    item.Selected = !item.Selected;
+                }
+                else
+                {
+                    item.Selected = flag;
+                }
+            }
+
+            lv.EndUpdate();
         }
     }
 }

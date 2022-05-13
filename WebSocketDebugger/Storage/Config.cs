@@ -10,5 +10,6 @@ namespace WebSocketDebugger.Storage
         public string WebSocketUri { get; set; } = "";
         public bool KeepMessage { get; set; } = true;
         public HashSet<TemplateData> Templates { get; set; } = new();
+        public Dictionary<string, string> Headers { get; set; } = new();
     }
 }

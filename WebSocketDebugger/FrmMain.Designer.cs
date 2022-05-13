@@ -65,6 +65,7 @@
             this.txtMessage = new System.Windows.Forms.TextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.btnHeaders = new System.Windows.Forms.Button();
             this.groupBoxHistory = new System.Windows.Forms.GroupBox();
             this.menuHistory.SuspendLayout();
             this.menuTemp.SuspendLayout();
@@ -87,7 +88,7 @@
             this.txtWebSocketUri.Location = new System.Drawing.Point(12, 12);
             this.txtWebSocketUri.Name = "txtWebSocketUri";
             this.txtWebSocketUri.PlaceholderText = "ws://1270.0.0.1:80/ws";
-            this.txtWebSocketUri.Size = new System.Drawing.Size(438, 23);
+            this.txtWebSocketUri.Size = new System.Drawing.Size(330, 23);
             this.txtWebSocketUri.TabIndex = 0;
             // 
             // btnWsControl
@@ -403,6 +404,7 @@
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.lblStatus);
+            this.splitContainer2.Panel1.Controls.Add(this.btnHeaders);
             this.splitContainer2.Panel1.Controls.Add(this.btnWsControl);
             this.splitContainer2.Panel1.Controls.Add(this.groupBox1);
             this.splitContainer2.Panel1.Controls.Add(this.txtWebSocketUri);
@@ -419,12 +421,23 @@
             // lblStatus
             // 
             this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblStatus.Location = new System.Drawing.Point(456, 12);
+            this.lblStatus.Location = new System.Drawing.Point(348, 12);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(64, 23);
             this.lblStatus.TabIndex = 10;
             this.lblStatus.Text = "已断开";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnHeaders
+            // 
+            this.btnHeaders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHeaders.Location = new System.Drawing.Point(418, 12);
+            this.btnHeaders.Name = "btnHeaders";
+            this.btnHeaders.Size = new System.Drawing.Size(102, 23);
+            this.btnHeaders.TabIndex = 9;
+            this.btnHeaders.TabStop = false;
+            this.btnHeaders.Text = "&H. 请求头";
+            this.btnHeaders.Click += new System.EventHandler(this.btnHeaders_Click);
             // 
             // groupBoxHistory
             // 
@@ -509,5 +522,6 @@
         private ToolStripMenuItem menuAll2;
         private ToolStripMenuItem menuNot2;
         private ToolStripMenuItem menuNone2;
+        private Button btnHeaders;
     }
 }
