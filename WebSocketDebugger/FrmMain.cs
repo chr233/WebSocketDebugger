@@ -41,6 +41,9 @@ namespace WebSocketDebugger
             txtWebSocketUri.Text = MyConfig.WebSocketUri;
             chkKeepMessage.Checked = MyConfig.KeepMessage;
 
+            int count = MyConfig.Headers.Count;
+            btnHeaders.Text = count > 0 ? $"&H. 请求头 [{count}]" : "&H. 请求头";
+
             foreach (TemplateData temp in MyConfig.Templates)
             {
                 Templates.Add(temp.Name, temp);
@@ -181,11 +184,14 @@ namespace WebSocketDebugger
             Invoke(action);
         }
 
-        private void btnHeaders_Click(object sender, EventArgs e)
+        private void BtnHeaders_Click(object sender, EventArgs e)
         {
             FrmHeaders frmHeaders = new();
             frmHeaders.ShowDialog();
             frmHeaders.Dispose();
+
+            int count = MyConfig.Headers.Count;
+            btnHeaders.Text = count > 0 ? $"&H. 请求头 [{count}]" : "&H. 请求头";
         }
 
         private void BtnSend_Click(object sender, EventArgs e)

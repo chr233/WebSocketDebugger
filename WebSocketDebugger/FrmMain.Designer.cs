@@ -94,9 +94,9 @@
             // btnWsControl
             // 
             this.btnWsControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnWsControl.Location = new System.Drawing.Point(526, 12);
+            this.btnWsControl.Location = new System.Drawing.Point(526, 9);
             this.btnWsControl.Name = "btnWsControl";
-            this.btnWsControl.Size = new System.Drawing.Size(102, 23);
+            this.btnWsControl.Size = new System.Drawing.Size(102, 28);
             this.btnWsControl.TabIndex = 9;
             this.btnWsControl.TabStop = false;
             this.btnWsControl.Text = "&C. 打开连接";
@@ -431,13 +431,13 @@
             // btnHeaders
             // 
             this.btnHeaders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnHeaders.Location = new System.Drawing.Point(418, 12);
+            this.btnHeaders.Location = new System.Drawing.Point(418, 9);
             this.btnHeaders.Name = "btnHeaders";
-            this.btnHeaders.Size = new System.Drawing.Size(102, 23);
+            this.btnHeaders.Size = new System.Drawing.Size(102, 28);
             this.btnHeaders.TabIndex = 9;
             this.btnHeaders.TabStop = false;
             this.btnHeaders.Text = "&H. 请求头";
-            this.btnHeaders.Click += new System.EventHandler(this.btnHeaders_Click);
+            this.btnHeaders.Click += new System.EventHandler(this.BtnHeaders_Click);
             // 
             // groupBoxHistory
             // 

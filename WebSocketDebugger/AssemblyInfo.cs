@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 
 [assembly: System.CLSCompliant(false)]
-[assembly: AssemblyVersion("1.0.0.156")]
-[assembly: AssemblyFileVersion("1.0.0.156")]
+[assembly: AssemblyVersion("1.0.1.159")]
+[assembly: AssemblyFileVersion("1.0.1.159")]
 
 [assembly: AssemblyCopyright("Copyright © 2022 Chr_")]
 [assembly: AssemblyProduct("WebSocket Debbuger")]
